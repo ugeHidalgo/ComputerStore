@@ -1,0 +1,25 @@
+﻿@model ICollection<AuthenticationClientData>
+
+@if (Model.Count == 0)
+{
+    <div class="message-info">
+        <p>No hay ningún  servicio externo de autenticación. Mira este artículo <a href="http://go.microsoft.com/fwlink/?LinkId=252166"></a>
+        para obtener detalles de como permitir a este sitio el logeo con otros servicios.</p>
+    </div>
+}
+else
+{
+    using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }))
+    {
+    @Html.AntiForgeryToken()
+    <fieldset id="socialLoginList">
+        <legend>Logearse usando otro servicio</legend>
+        <p>
+        @foreach (AuthenticationClientData p in Model)
+        {
+            <button type="submit" name="provider" value="@p.AuthenticationClient.ProviderName" title="Log in usando su cuenta @p.DisplayName ">@p.DisplayName</button>
+        }
+        </p>
+    </fieldset>
+    }
+}

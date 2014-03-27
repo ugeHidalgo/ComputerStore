@@ -1,0 +1,88 @@
+﻿@model ComputerStore.Models.UserProfileAndRegisterModel
+@{
+    ViewBag.Title = "Registro de nuevo usuario";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1><br />
+    <h5>Por favor rellene la ficha de usuario.</h5>
+</hgroup>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Formulario de Registro</legend>
+        <div class="editor-label">
+            @Html.LabelFor(m => m.ARegisterModel.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(m => m.ARegisterModel.UserName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(m => m.ARegisterModel.Password)
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(m => m.ARegisterModel.Password)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(m => m.ARegisterModel.ConfirmPassword)
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(m => m.ARegisterModel.ConfirmPassword)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(m => m.AUserProfile.EMail)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(m => m.AUserProfile.EMail)
+            @Html.ValidationMessageFor(m => m.AUserProfile.EMail)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(m => m.AUserProfile.Street)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(m => m.AUserProfile.Street)
+            @Html.ValidationMessageFor(m => m.AUserProfile.Street)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(m => m.AUserProfile.Number)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(m => m.AUserProfile.Number)
+            @Html.ValidationMessageFor(m => m.AUserProfile.Number)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(m => m.AUserProfile.CPostal)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(m => m.AUserProfile.CPostal)
+            @Html.ValidationMessageFor(m => m.AUserProfile.CPostal)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(m => m.AUserProfile.City)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(m => m.AUserProfile.City)
+            @Html.ValidationMessageFor(m => m.AUserProfile.City)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(m => m.AUserProfile.Country)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(m => m.AUserProfile.Country)
+            @Html.ValidationMessageFor(m => m.AUserProfile.Country)
+        </div>
+       
+        <input type="submit" value="Registrar Usuario" />
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -34,31 +34,63 @@ namespace ComputerStore.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
 
+        [Display(Name = "User Name")]
+        [StringLength(150, ErrorMessage = "Este campo no debe tener mas de 150 caracteres.")]
         public string UserName { get; set; }
+
+        [Display(Name = "First Name")]
+        [StringLength(150, ErrorMessage = "Este campo no debe tener mas de 150 caracteres.")]
+        public string FirstName { get; set; }
+
+        [Display(Name = "Second Name")]
+        [StringLength(150, ErrorMessage = "Este campo no debe tener mas de 150 caracteres.")]
+        public string SecondName { get; set; }
+
+        [Display(Name = "Fecha de Nacimiento")]
+        [DataType(DataType.Date)]
+        public DateTime? BirthDate { get; set; }
+
+        [Display(Name = "Fecha de Registro")]
+        [DataType(DataType.Date)]
+        public DateTime RegDate { get; set; }
+
+        [Display(Name = "DNI")]
+        [StringLength(15, ErrorMessage = "Este campo no debe tener mas de 15 caracteres.")]
+        public String IDNumber { get; set; }
 
         [Required(ErrorMessage = "Debe suministrar un correo electrónico")]
         [RegularExpression("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$", 
                   ErrorMessage = "La dirección de correo debe ser una dirección válida.")]
+        [StringLength(100, ErrorMessage = "Este campo no debe tener mas de 100 caracteres.")]
         [Display(Name = "eMail")]
         public string EMail { get; set; }
 
-        [Display(Name = "Calle")]
-        public string Street { get; set; }
+        [Display(Name = "Dirección de Envío")]
+        public Address SendingAddress { get; set; }
 
-        [Display(Name = "Numero")]
-        public string Number { get; set; }
+        [Display(Name = "Dirección de Facturación")]
+        public Address InvoicingAddress { get; set; }
 
-        [Display(Name = "Población")]
-        public string City { get; set; }
+        [RegularExpression("^(\\(?\\+?[0-9]*\\)?)?[0-9_\\- \\(\\)]*$",
+                  ErrorMessage = "Debe suministrar un número de tlf válido.")]
+        [StringLength(20, ErrorMessage = "Este campo no debe tener mas de 20 caracteres.")]
+        [Display(Name = "Teléfono fijo")]
+        public string Phone { get; set; }
 
-        [Display(Name = "País")]
-        public string Country { get; set; }
+        [Display(Name = "Teléfono Móvil")]
+        [StringLength(20, ErrorMessage = "Este campo no debe tener mas de 20 caracteres.")]
+        public string Mobile { get; set; }
 
-        [Display(Name = "C.Postal")]
-        [RegularExpression("\\d{5}(-\\d{4})?",
-                  ErrorMessage = "El código postal debe ser 12345 o 12345-6789.")]
-        //[StringLength(5, ErrorMessage = "El {0} debe tener al {2} caracteres.", MinimumLength = 5)]
-        public string CPostal { get; set; }
+        [Display(Name = "Usuario Activo")]
+        public Boolean Active { get; set; }
+
+        public UserProfile()
+        {
+            SendingAddress = new Address();
+            InvoicingAddress = new Address();
+            RegDate = DateTime.Now;
+            Active = true;
+        }
     }
 
     public class RegisterExternalLoginModel
@@ -107,7 +139,7 @@ namespace ComputerStore.Models
     public class RegisterModel
     {
         [Key]
-        [Required]
+        [Required(ErrorMessage = "Debe suministrar un nombre de usuario")]
         [Display(Name = "Usuario")]
         public string UserName { get; set; }
 

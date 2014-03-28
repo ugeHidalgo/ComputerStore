@@ -76,23 +76,28 @@ namespace ComputerStore.Controllers
                     WebSecurity.CreateUserAndAccount(model.ARegisterModel.UserName, model.ARegisterModel.Password);
                     WebSecurity.Login(model.ARegisterModel.UserName, model.ARegisterModel.Password);
                     //Save the mail for the user created
-                    UserProfile userModel;
+                    UserProfile userModel = new UserProfile();
                     using (UsersContext db = new UsersContext())
-                    {
-                        userModel = db.UserProfiles.Find(WebSecurity.GetUserId(model.ARegisterModel.UserName));
-                        userModel.EMail = model.AUserProfile.EMail;
-                        userModel.Street = model.AUserProfile.Street;
-                        userModel.Number = model.AUserProfile.Number;
-                        userModel.City = model.AUserProfile.City;
-                        userModel.Country = model.AUserProfile.Country;
-                        userModel.CPostal = model.AUserProfile.CPostal;
-                        db.Entry(userModel).State = EntityState.Modified;
-                        db.SaveChanges();
+                    {                      
+                        userModel = model.AUserProfile;
+                        userModel.UserId = WebSecurity.GetUserId(model.ARegisterModel.UserName);
+                        userModel.UserName = model.ARegisterModel.UserName;                        
+                        try
+                        {
+                            db.Entry(userModel).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
+                        catch (Exception)
+                        {
+                            Membership.DeleteUser(model.ARegisterModel.UserName);
+                            WebSecurity.Logout();
+                            return RedirectToAction("Index", "Home");
+                        }
                     }
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)
-                {
+                {                    
                     ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
                 }
             }

@@ -1,84 +1,192 @@
 ﻿@model ComputerStore.Models.UserProfileAndRegisterModel
 @{
     ViewBag.Title = "Registro de nuevo usuario";
+    
 }
 
 <hgroup class="title">
-    <h1>@ViewBag.Title.</h1><br />
+    <h1>@ViewBag.Title.</h1>
+    <br />
     <h5>Por favor rellene la ficha de usuario.</h5>
 </hgroup>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
 
     <fieldset>
         <legend>Formulario de Registro</legend>
-        <div class="editor-label">
-            @Html.LabelFor(m => m.ARegisterModel.UserName)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(m => m.ARegisterModel.UserName)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(m => m.ARegisterModel.Password)
-        </div>
-        <div class="editor-field">
-            @Html.PasswordFor(m => m.ARegisterModel.Password)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(m => m.ARegisterModel.ConfirmPassword)
-        </div>
-        <div class="editor-field">
-            @Html.PasswordFor(m => m.ARegisterModel.ConfirmPassword)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(m => m.AUserProfile.EMail)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(m => m.AUserProfile.EMail)
-            @Html.ValidationMessageFor(m => m.AUserProfile.EMail)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(m => m.AUserProfile.Street)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(m => m.AUserProfile.Street)
-            @Html.ValidationMessageFor(m => m.AUserProfile.Street)
-        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(m => m.AUserProfile.Number)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(m => m.AUserProfile.Number)
-            @Html.ValidationMessageFor(m => m.AUserProfile.Number)
-        </div>
+        <table style="width: 100%;">
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        <h1>Datos Principales</h1>
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-label">
+                        <h1>Direcciones</h1>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        Fecha registro: @DateTime.Now.ToShortDateString()
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.ARegisterModel.UserName)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(m => m.ARegisterModel.UserName)
+                    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(m => m.AUserProfile.CPostal)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(m => m.AUserProfile.CPostal)
-            @Html.ValidationMessageFor(m => m.AUserProfile.CPostal)
-        </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.ARegisterModel.Password)
+                    </div>
+                    <div class="editor-field">
+                        @Html.PasswordFor(m => m.ARegisterModel.Password)
+                    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(m => m.AUserProfile.City)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(m => m.AUserProfile.City)
-            @Html.ValidationMessageFor(m => m.AUserProfile.City)
-        </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.ARegisterModel.ConfirmPassword)
+                    </div>
+                    <div class="editor-field">
+                        @Html.PasswordFor(m => m.ARegisterModel.ConfirmPassword)
+                    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(m => m.AUserProfile.Country)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(m => m.AUserProfile.Country)
-            @Html.ValidationMessageFor(m => m.AUserProfile.Country)
-        </div>
-       
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.AUserProfile.FirstName)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.AUserProfile.FirstName)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.AUserProfile.SecondName)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.AUserProfile.SecondName)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.AUserProfile.BirthDate)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.AUserProfile.BirthDate)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.AUserProfile.IDNumber)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.AUserProfile.IDNumber)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.AUserProfile.EMail)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.AUserProfile.EMail)
+                        @Html.ValidationMessageFor(m => m.AUserProfile.EMail)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.AUserProfile.Phone)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.AUserProfile.Phone)
+                        @Html.ValidationMessageFor(m => m.AUserProfile.Phone)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.AUserProfile.Mobile)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.AUserProfile.Mobile)
+                        @Html.ValidationMessageFor(m => m.AUserProfile.Mobile)
+                    </div>
+                    <br />
+                </td>
+
+
+                <td>
+                    <div class="editor-label">
+                        <h2>@Html.LabelFor(m => m.AUserProfile.SendingAddress)</h2>
+                        @Html.LabelFor(m => m.AUserProfile.SendingAddress.Street)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.AUserProfile.SendingAddress.Street)
+                        @Html.ValidationMessageFor(m => m.AUserProfile.SendingAddress.Street)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.AUserProfile.SendingAddress.Number)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.AUserProfile.SendingAddress.Number)
+                        @Html.ValidationMessageFor(m => m.AUserProfile.SendingAddress.Number)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.AUserProfile.SendingAddress.CPostal)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.AUserProfile.SendingAddress.CPostal)
+                        @Html.ValidationMessageFor(m => m.AUserProfile.SendingAddress.CPostal)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.AUserProfile.SendingAddress.City)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.AUserProfile.SendingAddress.City)
+                        @Html.ValidationMessageFor(m => m.AUserProfile.SendingAddress.City)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.AUserProfile.SendingAddress.Country)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.AUserProfile.SendingAddress.Country)
+                        @Html.ValidationMessageFor(m => m.AUserProfile.SendingAddress.Country)
+                    </div>
+                    <div class="editor-label">
+                        <h2>@Html.LabelFor(m => m.AUserProfile.InvoicingAddress)</h2>
+                        @Html.LabelFor(m => m.AUserProfile.InvoicingAddress.Street)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.AUserProfile.InvoicingAddress.Street)
+                        @Html.ValidationMessageFor(m => m.AUserProfile.InvoicingAddress.Street)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.AUserProfile.InvoicingAddress.Number)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.AUserProfile.InvoicingAddress.Number)
+                        @Html.ValidationMessageFor(m => m.AUserProfile.InvoicingAddress.Number)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.AUserProfile.InvoicingAddress.CPostal)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.AUserProfile.InvoicingAddress.CPostal)
+                        @Html.ValidationMessageFor(m => m.AUserProfile.InvoicingAddress.CPostal)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.AUserProfile.InvoicingAddress.City)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.AUserProfile.InvoicingAddress.City)
+                        @Html.ValidationMessageFor(m => m.AUserProfile.InvoicingAddress.City)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.AUserProfile.InvoicingAddress.Country)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.AUserProfile.InvoicingAddress.Country)
+                        @Html.ValidationMessageFor(m => m.AUserProfile.InvoicingAddress.Country)
+                    </div>
+                </td>
+            </tr>
+        </table>
+
         <input type="submit" value="Registrar Usuario" />
     </fieldset>
 }

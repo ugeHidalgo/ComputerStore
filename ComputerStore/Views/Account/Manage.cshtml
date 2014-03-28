@@ -1,74 +1,173 @@
 ﻿@model ComputerStore.Models.UserProfile
 
 @{
-    ViewBag.Title = "Perfil del usuario : "+ Model.UserName;
+    ViewBag.Title = "Perfil del usuario : " + Model.UserName;
 }
 
 <h2>@ViewBag.Title </h2>
+
 <div>
     @Html.ActionLink("Inicio", "Index", "Home")
     @Html.ActionLink("Cambiar Password", "ManagePassword", "Account")
 </div>
+<h5>( Fecha alta: @Model.RegDate.ToShortDateString() )</h5>
+<h3>@ViewBag.StatusMessage</h3>
 
- <h3>@ViewBag.StatusMessage</h3>
-
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
         <legend>UserProfile</legend>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.EMail)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.EMail)
-            @Html.ValidationMessageFor(model => model.EMail)
-        </div>
+        <table style="width: 100%;">
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        <h1>Datos Principales</h1>
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-label">
+                        <h1>Direcciones</h1>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.FirstName)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.FirstName)
+                    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Street)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Street)
-            @Html.ValidationMessageFor(model => model.Street)
-        </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.SecondName)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.SecondName)
+                    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Number)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Number)
-            @Html.ValidationMessageFor(model => model.Number)
-        </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.BirthDate)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.BirthDate)
+                    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(m => m.CPostal)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(m => m.CPostal)
-            @Html.ValidationMessageFor(m => m.CPostal)
-        </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.IDNumber)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.IDNumber)
+                    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.City)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.City)
-            @Html.ValidationMessageFor(model => model.City)
-        </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.EMail)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.EMail)
+                        @Html.ValidationMessageFor(m => m.EMail)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.Phone)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.Phone)
+                        @Html.ValidationMessageFor(m => m.Phone)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.Mobile)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.Mobile)
+                        @Html.ValidationMessageFor(m => m.Mobile)
+                    </div>
+                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Country)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Country)
-            @Html.ValidationMessageFor(model => model.Country)
-        </div>
+                </td>
+                <td>
+                    <div class="editor-label">
+                        <h2>@Html.LabelFor(m => m.SendingAddress)</h2>
+                        @Html.LabelFor(m => m.SendingAddress.Street)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.SendingAddress.Street)
+                        @Html.ValidationMessageFor(m => m.SendingAddress.Street)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.SendingAddress.Number)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.SendingAddress.Number)
+                        @Html.ValidationMessageFor(m => m.SendingAddress.Number)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.SendingAddress.CPostal)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.SendingAddress.CPostal)
+                        @Html.ValidationMessageFor(m => m.SendingAddress.CPostal)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.SendingAddress.City)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.SendingAddress.City)
+                        @Html.ValidationMessageFor(m => m.SendingAddress.City)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.SendingAddress.Country)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.SendingAddress.Country)
+                        @Html.ValidationMessageFor(m => m.SendingAddress.Country)
+                    </div>
+                    <div class="editor-label">
+                        <h2>@Html.LabelFor(m => m.InvoicingAddress)</h2>
+                        @Html.LabelFor(m => m.InvoicingAddress.Street)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.InvoicingAddress.Street)
+                        @Html.ValidationMessageFor(m => m.InvoicingAddress.Street)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.InvoicingAddress.Number)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.InvoicingAddress.Number)
+                        @Html.ValidationMessageFor(m => m.InvoicingAddress.Number)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.InvoicingAddress.CPostal)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.InvoicingAddress.CPostal)
+                        @Html.ValidationMessageFor(m => m.InvoicingAddress.CPostal)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.InvoicingAddress.City)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.InvoicingAddress.City)
+                        @Html.ValidationMessageFor(m => m.InvoicingAddress.City)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.InvoicingAddress.Country)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.InvoicingAddress.Country)
+                        @Html.ValidationMessageFor(m => m.InvoicingAddress.Country)
+                    </div>
+                </td>
+            </tr>
+        </table>
 
-        <p>
-            <input type="submit" value="Grabar" />
+
+        <p style="text-align: right">
+            <input type="submit" value="   Grabar   " />
         </p>
     </fieldset>
 }

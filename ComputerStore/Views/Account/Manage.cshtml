@@ -54,7 +54,8 @@
                         @Html.LabelFor(m => m.BirthDate)
                     </div>
                     <div class="editor-field">
-                        @Html.EditorFor(m => m.BirthDate)
+                        <input type="date" name="BirthDate" class="datePicker" value="@Model.BirthDate"/>
+                        @*@Html.EditorFor(m => m.BirthDate)*@
                     </div>
 
                     <div class="editor-label">
@@ -175,4 +176,8 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+    <script src="~/Scripts/datePicker.js"></script>
 }
